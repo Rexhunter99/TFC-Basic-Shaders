@@ -29,7 +29,7 @@ Please refer to [Optifine Shaders Doc](https://github.com/sp614x/optifine/blob/m
 - 'Selection' bounding box
 
 ### gbuffers_block
-- Loose nuggets, rocks and sticks
+- Loose nuggets, rocks, sticks, etc...
 
 ### gbuffers_clouds
 - Clouds
