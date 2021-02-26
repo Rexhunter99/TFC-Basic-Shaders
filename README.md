@@ -1,4 +1,6 @@
 # Basic TFC+ Shaders
+###### `Version 1.0.1`
+
 This is a shaderpack specifically made for [TerraFirmaCraft+](https://www.curseforge.com/minecraft/mc-mods/terrafirmacraftplus) which is maintained by [Dunkleosteus](https://www.youtube.com/channel/UCq-j5IqnPTeBy4A4ezhY0SQ)
 
 The goal of this shaderpack is simple: Provide a shader that fixes circumvents bugs produced when running TFC+ and Optifine together, the following  list provides more details on what is fixed.
