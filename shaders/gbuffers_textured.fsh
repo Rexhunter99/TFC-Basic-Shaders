@@ -7,9 +7,7 @@ varying vec2 v_LightCoord;
 uniform sampler2D texture;
 uniform sampler2D lightmap;
 uniform int isEyeInWater;
-uniform vec4 entityColor;
 uniform int fogMode;
-uniform int blockEntityId;
 
 // Define some OpenGL constants for fog
 const int GL_LINEAR = 9729;
@@ -27,9 +25,6 @@ void main()
     vec4 texColor = texture2D(texture, v_TexCoord.st);
 
     gl_FragData[0] = texColor * blockLight * v_Color;
-
-	// Additive entity color is a bit more vibrant and less prone to being hidden by other factors.
-	gl_FragData[0].rgb += entityColor.rgb * entityColor.a;
 
 	// Explicitly check if the eye is underwater or the fog is Exponential
 	if (fogMode == GL_EXP || isEyeInWater == 1)
