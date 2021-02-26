@@ -7,6 +7,7 @@ varying vec4 v_Color;
 uniform sampler2D texture;
 uniform int fogMode;
 
+
 const int GL_LINEAR = 9729;
 const int GL_EXP = 2048;
 const int GL_EXP2 = 2049;
