@@ -3,7 +3,9 @@
 varying vec2 v_Texcoord;
 varying vec4 v_Color;
 
-void main() {
+
+void main()
+{
 	gl_Position = ftransform();
 	
 	v_Texcoord = (gl_MultiTexCoord0).xy;
