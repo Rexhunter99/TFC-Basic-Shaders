@@ -2,8 +2,10 @@
 
 varying vec4 v_Color;
 varying vec2 v_TexCoord;
+varying vec2 v_LightCoord;
 
 uniform sampler2D texture;
+uniform sampler2D lightmap;
 uniform int isEyeInWater;
 
 #include "lib/fog.fsh"
@@ -21,7 +23,7 @@ void main()
 	texColor.rgb = v_Color.rgb * texColor.rgb;
 	//texColor.a = (texColor.a > 0.05) ? 1.0 : 0.0;
 
-    gl_FragData[0] = texColor;
+    gl_FragData[0] = texColor * texture2D(lightmap, v_LightCoord);
 
 	// Apply fog to the fragment
 	gl_FragData[0].rgb = FogFragment(gl_FragData[0].rgb, isEyeInWater);
