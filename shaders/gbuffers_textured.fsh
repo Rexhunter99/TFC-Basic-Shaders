@@ -19,11 +19,21 @@ void main()
     // Z-Fighting/Flickering you can see on grass, ground litter and so on in many other shaders.
     //if (!gl_FrontFacing) discard;
 
-    vec4 texColor = texture2D(texture, v_TexCoord.st) * v_Color;
-	texColor.rgb = v_Color.rgb * texColor.rgb;
-	//texColor.a = (texColor.a > 0.05) ? 1.0 : 0.0;
+    vec4 texColor = texture2D(texture, v_TexCoord.st);
 
-    gl_FragData[0] = texColor * texture2D(lightmap, v_LightCoord);
+    // HACK: CustomHoe fix
+    if (texColor.rgb == vec3(0.0) && texColor.a > 0.005)
+    {
+        // To work around the hoe not working in shaders, we check if the texel is black, if it is
+        // then set it to white
+        texColor.rgb = vec3(1.0);
+    }
+
+    // Mix texture RGB, vertex RBB and lightmap RGB together for the fragment RGB
+    gl_FragData[0].rgb = texColor.rgb * v_Color.rgb * texture2D(lightmap, v_LightCoord).rgb;
+
+    // Mix the texture alpha and vertex alpha together
+    gl_FragData[0].a = texColor.a * v_Color.a;
 
 	// Apply fog to the fragment
 	gl_FragData[0].rgb = FogFragment(gl_FragData[0].rgb, isEyeInWater);
